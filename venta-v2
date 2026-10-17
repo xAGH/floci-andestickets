@@ -1,0 +1,6 @@
+#!/bin/sh
+n=$(printf 'INCR vendidas\r\n' | nc -w 1 floci 6379 | tr -d ':\r')
+[ -z "$n" ] && n="ERROR: no llego a Redis"
+echo "Content-type: text/plain"
+echo ""
+echo "Atendido por: $(cat /nombre) | boletas vendidas: $n"

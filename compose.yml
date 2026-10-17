@@ -1,0 +1,17 @@
+services:
+  floci:
+    image: floci/floci:latest
+    ports:
+      - "4566:4566"
+      - "6379-6399:6379-6399"
+      - "7001-7099:7001-7099"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      FLOCI_HOSTNAME: floci
+      FLOCI_BASE_URL: http://floci:4566
+      FLOCI_SERVICES_UI_IMAGE: ghcr.io/ofsazib/floci-dash:latest
+      FLOCI_SERVICES_UI_CONTAINER_NAME: floci-dash
+      FLOCI_SERVICES_UI_ENDPOINT_ENV: FLOCI_URL
+      FLOCI_SERVICES_UI_STATUS_PATH: /api/healthz
